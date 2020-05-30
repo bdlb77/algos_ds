@@ -25,8 +25,7 @@ const merge = (arr, mid, start, end) => {
       temp[k] = arr[j];
       k++;j++
     }
-  }
-  
+  }    
   // add any left over el.
   while (i <= mid) {
     temp[k] = arr[i];
@@ -37,7 +36,6 @@ const merge = (arr, mid, start, end) => {
     temp[k] = arr[j];
     j++;k++;
   }
-
   for (let i = start; i <= end; i++) {
     arr[i] = temp[i - start];
   }
