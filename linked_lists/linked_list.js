@@ -4,8 +4,7 @@ class LinkedList {
 	}
 
 	insertFirst(data) {
-		const node = new Node(data, this.head);
-		this.head = node;
+    this.insertAt(data, 0)
 	}
 
 	size() {
@@ -19,17 +18,18 @@ class LinkedList {
 	}
 
 	getFirst() {
-		return this.head;
+		this.getAt(0)
 	}
 
 	getLast() {
-		if (!this.head) return null;
+		// if (!this.head) return null;
 
-		let curr = this.head;
-		while (curr) {
-			if (!curr.next) return curr;
-			curr = curr.next;
-		}
+		// let curr = this.head;
+		// while (curr) {
+		// 	if (!curr.next) return curr;
+		// 	curr = curr.next;
+    // }
+    this.getAt(this.size() - 1)
 	}
 
 	clearList() {
@@ -137,26 +137,38 @@ class LinkedList {
       // if index === 0, append to begin of list.
       // last el?... then append as last.
     
-    const newNode = new Node(data)
-    let curr = this.head;
-    if (index === 0) {
-      newNode.next = curr;
-      this.head = newNode;
-      return
-    }
-    
-    const prev = this.getAt(index - 1);
-    if (!prev) {
-      return null;
-    } else {
-      if (prev.next) {
-        newNode.next = prev.next;
+      if (index === 0) {
+        this.head = new Node(data, this.head);
+        // newNode.next = this.head;
+        // this.head = newNode;
+        return
       }
-      prev.next = newNode;
+      
+    const prev = this.getAt(index - 1) || this.getLast();
+    const node = new Node(data, prev.next);
+    prev.next = node;
+  }
+
+  forEach(fn) {
+    let curr = this.head;
+    let counter = 0;
+
+    while (curr) {
+      fn(curr, counter);
+      counter++;
+      curr = curr.next;
     }
+  }
 
-
-    
+  // makes list an iterator func to work with for..of
+  // *numbers(){} to define a specific name for generator.
+    // call by for(node of list.numbers)
+  *[Symbol.iterator](){
+    let node = this.head;
+    while (node) {
+      yield node;
+      node = node.next
+    }
   }
 }
 
@@ -174,4 +186,11 @@ list.insertFirst(4);
 list.insertFirst(3);
 list.insertFirst(2);
 list.insertAt(10,4)
-console.log(list.print());
+// console.log(list.print());
+// list.forEach((node, index) => {
+//   console.log(`Num: ${node.data}, Index: ${index}`);
+// })
+
+for (node of list.numbers) {
+  console.log(node.data)
+}
