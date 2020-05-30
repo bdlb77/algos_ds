@@ -12,7 +12,7 @@ const arr = [6,5,4,9,2,1,3,8,7,6,5,4,9,2,1,3]
 // then swap pivot val with el at PartIndex.
 // return partIndex.
 
-  const partition = (arr, start, end) => {
+const partition = (arr, start, end) => {
   let partIndex = start;
   const pivot = arr[end];
   for (let i = start; i < end; i++) {

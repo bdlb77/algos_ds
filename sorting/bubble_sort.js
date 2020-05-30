@@ -19,5 +19,5 @@ const bubbleSort = arr => {
   if (!swapped) return;
   }
 }
-bubbleSort(arr)
-console.log(arr)
+bubbleSort(arr);
+console.log(arr);

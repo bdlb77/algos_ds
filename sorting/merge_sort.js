@@ -58,5 +58,5 @@ const sort = (arr, start, end) => {
 }
 
 sort(arr, 0, arr.length - 1);
-console.log(arr)
+console.log(arr);
 
