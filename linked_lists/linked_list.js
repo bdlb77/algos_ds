@@ -91,20 +91,20 @@ class LinkedList {
     return null;
   }
 
-  removeAt(idx) {
-    if (!this.head) return null;
-    if (index === 0) {
-      this.head = this.head.next;
-      return;
-    }
+  // removeAt(idx) {
+  //   if (!this.head) return null;
+  //   if (index === 0) {
+  //     this.head = this.head.next;
+  //     return;
+  //   }
 
-    const prev = this.getAt(index - 1);
-    if (!prev || !prev.next) {
-      // if prev || prev.next(node to remove) is out of bounds
-      return null;
-    }
-    prev.next = prev.next.next;
-  }
+  //   const prev = this.getAt(index - 1);
+  //   if (!prev || !prev.next) {
+  //     // if prev || prev.next(node to remove) is out of bounds
+  //     return null;
+  //   }
+  //   prev.next = prev.next.next;
+  // }
 
   removeAt(index) {
     if (!this.head) return null;
@@ -128,6 +128,36 @@ class LinkedList {
     }
     return null
   }
+
+  insertAt(data, index) {
+    // get prev index and set it's next to new node
+    // set new node's next to prev.next
+    // edge cases:
+      // if no head, insert at begin.
+      // if index === 0, append to begin of list.
+      // last el?... then append as last.
+    
+    const newNode = new Node(data)
+    let curr = this.head;
+    if (index === 0) {
+      newNode.next = curr;
+      this.head = newNode;
+      return
+    }
+    
+    const prev = this.getAt(index - 1);
+    if (!prev) {
+      return null;
+    } else {
+      if (prev.next) {
+        newNode.next = prev.next;
+      }
+      prev.next = newNode;
+    }
+
+
+    
+  }
 }
 
 class Node {
@@ -143,4 +173,5 @@ list.insertFirst(5);
 list.insertFirst(4);
 list.insertFirst(3);
 list.insertFirst(2);
-console.log(list.removeAt(0));
+list.insertAt(10,4)
+console.log(list.print());
