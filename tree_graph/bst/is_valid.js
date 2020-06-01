@@ -13,7 +13,7 @@ function helper(node, min, max) {
   if (node.data < min || node.data > max) {
     return false;
   }
-
+Number.MA
   if (node.left) {
     return helper(node.left, min, node.data);
   }
